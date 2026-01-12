@@ -11,7 +11,10 @@ app = FastAPI(title="Project Antigravity - Gemini RAG Backend")
 
 # Initialize Gemini Client
 API_KEY = os.getenv("GEMINI_API_KEY", "AQ.Ab8RN6L-CeSoymIyq6Xofek5Uoymyyh-OCIRtAmflJksXuepIg")
-client = genai.Client(api_key=API_KEY)
+client = genai.Client(
+    api_key=API_KEY,
+    http_options={'api_version': 'v1beta'} # This is CRITICAL for File Search API Keys
+)
 
 # --- Models ---
 class StoreCreate(BaseModel):
